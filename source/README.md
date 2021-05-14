@@ -1,22 +1,24 @@
 # Powerpage Markdown Editor
 
-``Powerpage Markdown Editor`` is a markdown editor using [Powerpage](https://github.com/casualwriter/powerpage) with 
- js library of [simplemde-markdown-editor]((https://github.com/sparksuite/simplemde-markdown-editor)). 
+``Powerpage Markdown Editor`` is a markdown editor using [**Powerpage**](https://github.com/casualwriter/powerpage) with 
+ js library of [*simplemde-markdown-editor*](https://github.com/sparksuite/simplemde-markdown-editor). 
  
- It is a simple html/js application demonstrating developing application using [``powerpage``](../powerpage).
+ It is a simple html/js application demonstrating developing application using [Powerpage](https://github.com/casualwriter/powerpage).
 
 ![Powerpage Markdown Editor](powerpage-md.jpg)
+
 
 ## Installation & Run
 
 * No installation is needed, Just download and run ``powerpage.exe``.
-* the package is same as [Powerpage](https://github.com/casualwriter/powerpage), it is a single executable program
+* The package is same as [Powerpage](https://github.com/casualwriter/powerpage), only ``powerpage.ini`` is revised.
+
 
 ## Source Code
 
-It is single html/js program in 80 lines, showing in below code-block. 
+It is single html/js program ([markdown.html](source/markdown.html)) in 80 lines, showing in below code-block. 
 
-~~~
+```
 <!DOCTYPE html>
 <html>
 <title>Powerpage Markdown Editor</title>
@@ -98,17 +100,14 @@ function onPageClose() {
   }  
 }
 </script>
-~~~
+```
 
 
 ## Modification History
 
 * 2021/05/14, first version with powerpage v0.43
 
+
 ## License
 
 MIT
-
-
-
-
