@@ -106,8 +106,10 @@ function onPageClose() {
 ## Modification History
 
 * 2021/05/14, first version with powerpage v0.43
+* 2021/05/20, using powerpage v0.45
 
 
 ## License
 
 MIT
+
