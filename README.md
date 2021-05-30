@@ -16,7 +16,7 @@
 
 ## Source Code
 
-It is single html/js program ([markdown.html](source/markdown.html)) in 80 lines, showing in below code-block. 
+It is single html/js program ([markdown.html](source/markdown.html)) in 90 lines, showing in below code-block. 
 
 ```
 <!DOCTYPE html>
@@ -26,8 +26,11 @@ It is single html/js program ([markdown.html](source/markdown.html)) in 80 lines
 <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 <style>
 .CodeMirror {	height:calc(100vh - 160px); }
+@media print{
+  #header, .CodeMirror-scroll, .CodeMirror-vscrollbar, .editor-toolbar, .editor-statusbar { display:none!important }
+  .CodeMirror, .editor-preview { position:relative; height:auto; overflow:hidden }
+}
 </style>
-
 <body style="font-family:calibri">
   <div id=header style="padding:8px">
     <span style="font-size:20px;font-weight:700;">Markdown Editor </span>
@@ -35,10 +38,10 @@ It is single html/js program ([markdown.html](source/markdown.html)) in 80 lines
     <b>File: </b><span id=filename style="color:green">new file</span>  
     <span style="float:right">
     <button onclick="window.location='powerpage.html'">PowerPage</button>&nbsp;&nbsp;&nbsp;
-    <button onclick="pb.callback('onOpenFile').file.select('Markdown (*.md),*md')" accesskey=o><b>O</b>pen</button>
-    <button onclick="onPrint()" accesskey=p disabled><b>P</b>rint</button>&nbsp;&nbsp;&nbsp;
+    <button onclick="pb.callback('onOpenFile').file.opendialog('Markdown (*.md),*md')" accesskey=o><b>O</b>pen</button>
+    <button onclick="onPrint()" accesskey=p><b>P</b>rint</button>&nbsp;&nbsp;&nbsp;
     <button onclick="onSave()" accesskey=s><b>S</b>ave</button>
-    <button onclick="pb.callback('onSaveAs').file.select('Markdown (*.md),*md')" assesskey=a>Save <b>A</b>s</button>
+    <button onclick="pb.callback('onSaveAs').file.savedialog('Markdown (*.md),*md')" assesskey=a>Save <b>A</b>s</button>
     </span> 
   </div>
   <textarea id="content"></textarea>
@@ -63,12 +66,13 @@ function onOpenFile(result, type, url) {
 // load file
 function onLoadFile(result, type, url) {
   simplemde.value( mdText = result )
+  if (simplemde.isPreviewActive()) document.getElementsByClassName('fa fa-eye')[0].click()
 }
 
 // save file
 function onSave() {
   if (mdFile == 'new file') {
-    pb.callback('onSaveAs').file.saveas('Markdown (*.md),*md')
+    pb.callback('onSaveAs').file.savedialog('Markdown (*.md),*md')
   } else if ( simplemde.value() == mdText ) {
     alert('Data no change. no need to save!')
   } else {
@@ -97,19 +101,28 @@ function onPageClose() {
     mdText = simplemde.value()
     pb.file.write( mdFile, '@mdText', 'close' )
     return 'no'
-  }  
+  }
+  //return 'yes'  
+}
+
+// print preview (active preview first)
+function onPrint() {
+  if (!simplemde.isPreviewActive()) document.getElementsByClassName('fa fa-eye')[0].click()
+  setTimeout( function() { pb.print('preview') }, 500); 
 }
 </script>
-```
+# ```
 
 
 ## Modification History
 
 * 2021/05/14, first version with powerpage v0.43
-* 2021/05/25, using powerpage v0.46
+* 2021/05/20, using powerpage v0.45
+* 2021/05/30, add print preview function
 
 
 ## License
 
 MIT
+
 

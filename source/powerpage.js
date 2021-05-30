@@ -127,7 +127,8 @@ pb.file.read = function (file, callback) { pb.submit( pb.cmd.prepare(callback) +
 pb.file.write = function (file, text, callback) { pb.submit( pb.cmd.prepare(callback) + 'file/write/' + file + '/' +  text ) }
 pb.file.append = function (file, text, callback) { pb.submit( pb.cmd.prepare(callback) + 'file/append/' + file + '/' +  text ) }
 pb.file.delete = function (file, callback) { pb.submit( pb.cmd.prepare(callback) + 'file/delete/' + file ) }
-pb.file.select = function (ext, callback) { pb.submit( pb.cmd.prepare(callback) + 'file/select/' + ext ) }
+pb.file.opendialog = function (ext, callback) { pb.submit( pb.cmd.prepare(callback) + 'file/opendialog/' + ext ) }
+pb.file.savedialog = function (ext, callback) { pb.submit( pb.cmd.prepare(callback) + 'file/savedialog/' + ext ) }
 
 //==== pb session. 
 // session(name) -> get value
@@ -143,6 +144,9 @@ pb.session = function ( name, value, from ) {
       pb.session[name] = (value.substr(0,1)=='{'? JSON.parse(value) : value )
    }
 }
+
+//====== print support. pb://print/[now|preview|setup]
+pb.print = function (opt, callback) { pb.submit( pb.cmd.prepare(callback) + 'print/' + opt ) }
 
 //disable right-click
 document.addEventListener("contextmenu", function(e){ e.preventDefault();}, false);
