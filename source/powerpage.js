@@ -4,7 +4,7 @@
 // 20210505. ck.  pb.session()
 // 20210507. ck.  pb.console(), pb.eval() for console support
 // 20210529. ck.  pb.print(), pd.pdf() 
-// 20210615. ck.  add pb.sendkeys(), rewrite pb.run(), pb.shell() 
+// 20210615. ck.  add pb.sendkeys(), rewrite pb.run(), pb.shell()
 //========================================================================
 // pb main function, pb('varname') = js.varname, pb('#div') = getElementById
 var pb = function (n) { return n[0]=='#'? document.getElementById(n.substr(2)) : window[n]; }

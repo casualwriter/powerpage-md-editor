@@ -122,6 +122,7 @@ function onPrint() {
 ## Modification History
 
 * 2021/05/14, v0.50, first version with powerpage v0.43
+* 2021/05/30, v0.55, add print preview function
 * 2021/06/16, v0.60, print preview, commandline, etc.. (using powerpage v0.50)
 
 
