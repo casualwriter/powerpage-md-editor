@@ -12,11 +12,11 @@
 
 * No installation is needed, Just download and run ``powerpage.exe``.
 * The package is same as [Powerpage](https://github.com/casualwriter/powerpage), only ``powerpage.ini`` is revised.
-
+* Commandline Syntax: ``powerpage.exe {filename}``, e.g. ``powerpage.exe  README.md``
 
 ## Source Code
 
-It is single html/js program ([markdown.html](source/markdown.html)) in 90 lines, showing in below code-block. 
+It is single html/js program ([markdown.html](source/markdown.html)) within 100 lines, showing in below code-block. 
 
 ```
 <!DOCTYPE html>
@@ -95,7 +95,12 @@ function onSaveAs(result, type, url) {
   }  
 }
 
-// prompt save data when close
+// When page ready. open file if has commandline parm (i.e. "powerpage.exe {markdown-file}")
+function onPageReady(cmdline) {
+   if (cmdline>' ') onOpenFile( '{"status":2, "path":"' + cmdline + '" }' ) 
+}
+
+// When close window, prompt to save data
 function onPageClose() {
   if ( simplemde.value() !== mdText && mdFile !== 'new file' && confirm('Data has been change. Save Data?')) {
     mdText = simplemde.value()
@@ -116,13 +121,16 @@ function onPrint() {
 
 ## Modification History
 
-* 2021/05/14, first version with powerpage v0.43
-* 2021/05/20, using powerpage v0.45
-* 2021/05/30, add print preview function
+* 2021/05/14, v0.50, first version with powerpage v0.43
+* 2021/06/16, v0.60, print preview, commandline, etc.. (using powerpage v0.50)
 
 
 ## License
 
 MIT
+
+
+
+
 
 
