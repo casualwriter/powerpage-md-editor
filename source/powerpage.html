@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
+<title>Power Page</title>
 <style>
   body { margin:12px; font-family:arial; font-size:14px; }
+  button { font-family:arial; font-size:13px }
   li { padding-top: 6px; }
   td.remark {border:1px solid grey; width:350px; padding:4px; }
   td.sample {border:1px solid grey; width:250px; padding:4px; }
@@ -13,11 +15,10 @@
 </style>
 <body>
 
-<button onclick="location.href='markdown.html'">Markdown Editor</button> 
+<button onclick="location.href='pp-markdown.html'">Markdown Editor</button> 
+<button onclick="location.href='pp-web-crawler.html'" disabled>Web Crawler</button> 
 <button onclick="location.href='dbbrowser.html'" disabled>DB Browser</button> 
-<button onclick="location.href='document.html'" disabled>Documentation</button> 
 <button onclick="pb.run('notepad.exe powerpage.html')" accesskey=e style="float:right"><u>E</u>dit This Page</button> 
-<button onclick="alert(navigator.userAgent)" style="float:right">navigator.userAgent</button> 
 <button onclick="pb.window('w_about')" accesskey=a style="float:right"><u>A</u>bout</button> 
 
 <p id=brief><b>Powerpage is a lightweight web browser with DB capability and windows accessibility, for rapid application development by html/css/js. </b>
@@ -244,8 +245,8 @@ call powerbuilder customized window/function, which stored in extert pbl file.
   <tr>
      <td class=remark>Open PB window with parameters
      <td class=sample><mark>pb://window</mark>/winName/parm
-     <td class=syntax>[pb://window/w_web_dialog/top=20,width=800,url=https://google.com]()
-     <td class=syntax>[javascript:pb.window('w_web_dialog','left=50,height=500,url=https://google.com')]()
+     <td class=syntax>[pb://window/w_power_dialog/top=20,width=800,url=https://google.com]()
+     <td class=syntax>[javascript:pb.window('w_power_dialog','left=50,height=500,url=https://google.com')]()
   </tr>
   <tr>
      <td class=remark>Call PB function, return string
@@ -323,6 +324,12 @@ Session is important for applicaiton development. After page loaded,
      <td class=syntax>[pb://callback/mycallback/popup/height=500,url=dialog.html]()
      <td class=syntax>[javascript:pb.popup('width=500,url=dialog.html','mycallback')]()
   </tr>  
+  <tr>
+     <td class=remark>Capture url content and callback
+     <td class=sample><mark>pb://popup/<mark>mode=spider,url=?</mark>
+     <td class=syntax>[pb://callback/mycallback/popup/mode=spider,url=https://campodesktop.com]()
+     <td class=syntax>[javascript:pb.callback('mycallback').popup('mode=spider,url=https://campodesktop.com,key=#main')]()
+  </tr>
   <tr>
      <td class=remark>open url in same window
      <td class=sample>window.location=url

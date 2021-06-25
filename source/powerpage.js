@@ -4,7 +4,7 @@
 // 20210505. ck.  pb.session()
 // 20210507. ck.  pb.console(), pb.eval() for console support
 // 20210529. ck.  pb.print(), pd.pdf() 
-// 20210615. ck.  add pb.sendkeys(), rewrite pb.run(), pb.shell()
+// 20210615. ck.  add pb.sendkeys(), rewrite pb.run(), pb.shell() 
 //========================================================================
 // pb main function, pb('varname') = js.varname, pb('#div') = getElementById
 var pb = function (n) { return n[0]=='#'? document.getElementById(n.substr(2)) : window[n]; }
@@ -18,11 +18,11 @@ pb.router = function ( name, result, type, url ) {
   if (typeof window[name] === "function") {
       window[name]( result, type, url );
   } else if (name) {
-      alert( 'callback function ' + name + '() not found!\n\n type:' + type + ' from url: ' + url 
-             + '\n function: '+name + '\n Result: \n\n' + result )
+      alert( 'callback function ' + name + '() not found!\n\n type:' + type + '\n cmd: ' + url 
+             + '\n function: '+name + '\n result: \n\n' + result )
   } else if (type=='json'||type=='table'||type=='sql'||type=='file') {
-      alert( 'callback (default)\n\n type:' + type + ' from url: ' + url 
-             + '\n function: '+name + '\n Result: \n\n' + result )
+      alert( 'callback (default)\n\n type:' + type + '\n cmd: ' + url 
+             + '\n Result: \n\n' + result )
   }  
 }
 
@@ -166,6 +166,25 @@ pb.pdf = function ( opt, parm, callback ) {
   return pb.submit( 'pdf', opt + (parm? '/' + parm : '' ), callback ) 
 }
 
+//====== function for web crawler (mode=crawl), key:=html|querySelector
+pb.crawl = function ( key ) {
+  var divs, rs, i, text='', html='', links=[]
+  if ( (key||'html')=='html' ) {
+    rs = { body:document.body.outerHTML, head:document.head.outerHTML } 
+  } else {
+    divs = document.querySelectorAll(key.replace(/\*/g,'#'))
+    for (var i=0; i<divs.length; i++ ) {
+      text += divs[i].innerText + '\n'
+      html += divs[i].innerHTML + '\n'
+      if (divs[i].nodeName=='A') { links[i] = { url:divs[i].href, text:divs[i].innerText, id:divs[i].id } }     
+    }  
+    rs = { text:text, html:html, links:links }
+	}
+  return JSON.stringify(rs)
+}
+
 //disable right-click
 document.addEventListener("contextmenu", function(e){ e.preventDefault();}, false);
+
+document.location='pb://microhelp/Mode=IE'+document.documentMode+', userAgent='+navigator.userAgent
 
