@@ -1,18 +1,19 @@
 # Powerpage Markdown Editor
 
-``Powerpage Markdown Editor`` is a markdown editor using [**Powerpage**](https://github.com/casualwriter/powerpage) with 
+``Powerpage Markdown Editor`` is a lightweight markdown editor using [**Powerpage**](https://github.com/casualwriter/powerpage) with 
  js library of [*simplemde-markdown-editor*](https://github.com/sparksuite/simplemde-markdown-editor). 
  
  It is a simple html/js application demonstrating developing application using [Powerpage](https://github.com/casualwriter/powerpage).
 
-![Powerpage Markdown Editor](powerpage-md.jpg)
+![Powerpage Markdown Editor](powerpage-markdown.jpg)
 
 
 ## Installation & Run
 
 * No installation is needed, Just download and run ``powerpage.exe``.
 * The package is same as [Powerpage](https://github.com/casualwriter/powerpage), only ``powerpage.ini`` is revised.
-* Commandline Syntax: ``powerpage.exe {filename}``, e.g. ``powerpage.exe  README.md``
+* Commandline Syntax: ``powerpage.exe {filename}``, e.g. ``powerpage.exe README.md``
+
 
 ## Source Code
 
@@ -25,6 +26,7 @@ It is single html/js program ([pp-markdown.html](source/pp-markdown.html)) withi
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
 <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 <style>
+button { font-family:calibri }
 .CodeMirror {	height:calc(100vh - 160px); }
 @media print{
   #header, .CodeMirror-scroll, .CodeMirror-vscrollbar, .editor-toolbar, .editor-statusbar { display:none!important }
@@ -33,11 +35,10 @@ It is single html/js program ([pp-markdown.html](source/pp-markdown.html)) withi
 </style>
 <body style="font-family:calibri">
   <div id=header style="padding:8px">
-    <span style="font-size:20px;font-weight:700;">Markdown Editor </span>
-    <a target=_new href="https://github.com/sparksuite/simplemde-markdown-editor">(SimpleMDE)</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    <b>File: </b><span id=filename style="color:green">new file</span>  
+    <span style="font-size:20px;font-weight:700;"><a href='powerpage.html'>PowerPage</a> Markdown Editor</span>
+    <a target=_new href="https://github.com/sparksuite/simplemde-markdown-editor">(SimpleMDE)</a>&nbsp;&nbsp;
+    <b>File:</b> <span id=filename style="color:green">new file</span>  
     <span style="float:right">
-    <button onclick="window.location='powerpage.html'">PowerPage</button>&nbsp;&nbsp;&nbsp;
     <button onclick="pb.callback('onOpenFile').file.opendialog('Markdown (*.md),*md')" accesskey=o><b>O</b>pen</button>
     <button onclick="onPrint()" accesskey=p><b>P</b>rint</button>&nbsp;&nbsp;&nbsp;
     <button onclick="onSave()" accesskey=s><b>S</b>ave</button>
@@ -65,7 +66,8 @@ function onOpenFile(result, type, url) {
 
 // load file
 function onLoadFile(result, type, url) {
-  simplemde.value( mdText = result )
+  simplemde.value( result )
+  mdText = simplemde.value() 
   if (simplemde.isPreviewActive()) document.getElementsByClassName('fa fa-eye')[0].click()
 }
 
@@ -107,7 +109,6 @@ function onPageClose() {
     pb.file.write( mdFile, '@mdText', 'close' )
     return 'no'
   }
-  //return 'yes'  
 }
 
 // print preview (active preview first)
@@ -124,6 +125,7 @@ function onPrint() {
 * 2021/05/14, v0.50, first version with powerpage v0.43
 * 2021/05/30, v0.55, add print preview function
 * 2021/06/16, v0.60, print preview, commandline, etc.. (using powerpage v0.50)
+* 2021/07/04, v0.61, minor fix, with powerpage v0.54, and power-web-crawler v0.30
 
 
 ## License
