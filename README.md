@@ -27,6 +27,7 @@ It is single html/js program ([pp-markdown.html](source/pp-markdown.html)) withi
 * 2021/06/16, v0.60, print preview, commandline, etc.. (using powerpage v0.50)
 * 2021/07/04, v0.61, minor fix, with powerpage v0.54, and power-web-crawler v0.30
 * 2021/07/09, v0.62, minor fix, with powerpage v0.55, and power-web-crawler v0.40
+* 2021/07/20, v0.62, update source folder, align with powerpage v0.56, and power-web-crawler v0.56
 
 
 ## License
